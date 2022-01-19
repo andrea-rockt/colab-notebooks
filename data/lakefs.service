@@ -1,0 +1,15 @@
+[Unit]
+Requires=postgresql.service
+After=postgresql.service
+
+[Service]
+Environment=LAKEFS_LOGGING_OUTPUT='-'
+Environment=LAKEFS_BLOCKSTORE_LOCAL_PATH='~/lakefs/dev/data'
+Environment=LAKEFS_DATABASE_CONNECTION_STRING='postgres://postgres@postgres:localhost:5432/postgres?sslmode=disable'
+Environment=LAKEFS_LOGGING_FORMAT='text'
+Environment=LAKEFS_BLOCKSTORE_TYPE='local'
+Environment=LAKEFS_GATEWAYS_S3_REGION='us-east-1'
+Environment=LAKEFS_AUTH_ENCRYPT_SECRET_KEY='10a718b3f285d89c36e9864494cdd1507f3bc85b342df24736ea81f9a1134bcc09e90b6641'
+Environment=LAKEFS_LOGGING_LEVEL='DEBUG'
+Environment=LAKEFS_LISTEN_ADDRESS='0.0.0.0:8000'
+ExecStart=/usr/bin/lakefs
